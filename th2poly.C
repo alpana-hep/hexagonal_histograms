@@ -10,11 +10,58 @@ std::map<int, int> map_HGCROC_pin = {{0,0}, {1,1}, {2,2}, {3,3}, {4,4}, {5,5}, {
 // key=globalId, value=padId
 std::map<int, int> map_SiCell_padId = {{0,36}, {1,26}, {2,35}, {3,25}, {4,8}, {5,17}, {6,16}, {7,7}, {9,6}, {10,15}, {11,5}, {12,13}, {13,34}, {14,33}, {15,23}, {16,24}, {18,14}, {20,4}, {21,12}, {22,3}, {23,11}, {24,2}, {25,1}, {26,10}, {27,9}, {29,21}, {30,31}, {31,22}, {32,32}, {33,19}, {34,29}, {35,20}, {36,30}, {39,46}, {40,58}, {41,47}, {42,59}, {43,44}, {44,57}, {45,56}, {46,45}, {48,74}, {49,88}, {50,87}, {51,73}, {52,71}, {53,86}, {54,72}, {55,85}, {57,70}, {59,69}, {60,84}, {61,68}, {62,83}, {63,43}, {64,42}, {65,55}, {66,54}, {68,67}, {69,82}, {70,66}, {71,81}, {72,52}, {73,41}, {74,53}, {75,40}, {78,165}, {79,177}, {80,151}, {81,166}, {82,178}, {83,188}, {84,198}, {85,189}, {87,179}, {88,167}, {89,168}, {90,153}, {91,137}, {92,123}, {93,138}, {94,152}, {96,154}, {98,155}, {99,139}, {100,140}, {101,125}, {102,126}, {103,111}, {104,110}, {105,95}, {107,109}, {108,93}, {109,124}, {110,108}, {111,94}, {112,79}, {113,80}, {114,65}, {117,121}, {118,135}, {119,136}, {120,150}, {121,107}, {122,106}, {123,91}, {124,122}, {126,120}, {127,104}, {128,89}, {129,105}, {130,76}, {131,75}, {132,90}, {133,60}, {135,62}, {137,61}, {138,48}, {139,49}, {140,37}, {141,92}, {142,78}, {143,77}, {144,63}, {146,38}, {147,27}, {148,28}, {149,18}, {150,39}, {151,64}, {152,50}, {153,51}, {156,99}, {157,98}, {158,115}, {159,114}, {160,96}, {161,97}, {162,113}, {163,112}, {165,127}, {166,128}, {167,141}, {168,142}, {169,130}, {170,145}, {171,144}, {172,129}, {174,143}, {176,157}, {177,156}, {178,169}, {179,170}, {180,180}, {181,190}, {182,181}, {183,191}, {185,171}, {186,172}, {187,158}, {188,159}, {189,192}, {190,193}, {191,182}, {192,183}, {195,100}, {196,101}, {197,116}, {198,117}, {199,146}, {200,132}, {201,147}, {202,131}, {204,102}, {205,103}, {206,119}, {207,118}, {208,148}, {209,134}, {210,133}, {211,149}, {213,163}, {215,162}, {216,164}, {217,175}, {218,176}, {219,160}, {220,173}, {221,161}, {222,174}, {224,186}, {225,187}, {226,196}, {227,197}, {228,195}, {229,184}, {230,185}, {231,194}};
 
-void th2poly(TString inputfile, TString outputfile, double range, bool drawLine=false){
+void th2poly(TString inputfile,TString inputfile1, TString png_String, TString outputfile, double range, bool drawLine=false, TString layer_= "1", TString runNumber="-1", int ped_method=-1){
     TCanvas *c1 = new TCanvas("c1", "", 900, 900);
     c1->SetRightMargin(0.15);
-
+    c1->SetLeftMargin(0.1);
     gStyle->SetPaintTextFormat(".0f");
+
+    // --------------------///
+    // Reading pedestal input text files //
+    // -------------------- ///
+    std::ifstream in_file;
+    in_file.open(inputfile1,ios::in);
+    std::vector<int> map_layer;
+    std::vector<int> map_globalID;
+    std::vector<int> map_RocChip;
+    std::vector<int> map_HalfRocChip;
+    std::vector<int> map_HalfRocChannel;
+    std::vector<float> map_gaussMean;
+    std::vector<float> map_gaussSigma;
+    std::vector<float> map_HistMean;
+    cout<< "extracting pedestal fro module - "<<atoi(layer_)<<"\t"<<layer_<<endl;
+    if(!in_file.is_open())
+      {
+	std::cout << " file not opened" << std::endl;
+      }
+    else
+      {
+	 map_layer.clear();
+	 map_globalID.clear();
+	 map_RocChip.clear();
+	 map_HalfRocChip.clear();
+	 map_HalfRocChannel.clear();
+	 map_gaussMean.clear();
+	 map_gaussSigma.clear();
+	 map_HistMean.clear();
+	 while (!in_file.eof()) {
+	   int layer,global_ID,chip_,halfchip,halfch,channel_,channel_map,channeltype,en_chan,entry;
+	   float adc,adc_err,adc_sigma,err_sigma,chi2,grass, grass_err, mpv;
+	   in_file>>layer>>global_ID>>chip_>>halfchip>>halfch>>entry>>adc>>adc_sigma>>adc_err>>err_sigma>>mpv;
+	   if (in_file.eof()) break;
+	   if(layer!=atoi(layer_)) continue;
+	   map_layer.push_back(layer);
+	   map_globalID.push_back(global_ID);
+	   map_RocChip.push_back(chip_);
+	   map_HalfRocChip.push_back(halfchip);
+	   map_HalfRocChannel.push_back(halfch);
+	   map_gaussMean.push_back(adc);
+	   map_gaussSigma.push_back(adc_sigma);
+	   map_HistMean.push_back(mpv);
+	 }
+	 in_file.close();
+      }
+    std::cout<< "entries in the input text file "<<"\t"<<map_HistMean.size()<<std::endl;
 
     int scheme = 0;
     TString title;
@@ -24,8 +71,14 @@ void th2poly(TString inputfile, TString outputfile, double range, bool drawLine=
     TProfile *profile = new TProfile("profile", "profile", 234, 0, 234, 0, 1024);
     switch(scheme) {
         default:
-            for(int i=0; i<234; ++i) {
-                double value = (float)i;
+	  for(int i=0; i<234; ++i) {
+	      double value = (float)map_HistMean[i];
+	      if(ped_method==0)
+		value = (float)map_HistMean[i];
+	      else if(ped_method==1)
+		value =(float)map_gaussMean[i];
+	      else if(ped_method==2)
+		value =(float)map_gaussSigma[i];
                 if(i==0) profile->Fill(i, value+1e-6);
                 else profile->Fill(i, value);
             }
@@ -34,7 +87,14 @@ void th2poly(TString inputfile, TString outputfile, double range, bool drawLine=
         case 1: // scheme: expected injected channels
             title = "Manual specification";
             for(int i=0; i<234; ++i) {
-                double value = (float)i;
+	      double value = (float)map_HistMean[i];
+	      if(ped_method==0)
+		value =(float)map_HistMean[i];
+	      else if(ped_method==1)
+		value =(float)map_gaussMean[i];
+	      else if(ped_method==2)
+		value =(float)map_gaussSigma[i];
+
                 if(i==0) profile->Fill(i, value+1e-6);
                 else if(i==20) profile->Fill(i, value);
                 else if(i==40) profile->Fill(i, value);
@@ -54,7 +114,14 @@ void th2poly(TString inputfile, TString outputfile, double range, bool drawLine=
         case 2: // scheme: results displayed on DQM GUI
             title = "DQM GUI (with readout sequence)";
             for(int i=0; i<234; ++i) {
-                double value = (float)i;
+	      double value = (float)map_HistMean[i];
+	      if(ped_method==0)
+		value =(float)map_HistMean[i];
+	      else if(ped_method==1)
+		value =(float)map_gaussMean[i];
+	      else if(ped_method==2)
+		value =(float)map_gaussSigma[i];
+
                 if(i==21) profile->Fill(i, value);
                 else if(i==42) profile->Fill(i, value);
                 else if(i==64) profile->Fill(i, value);
@@ -83,22 +150,22 @@ void th2poly(TString inputfile, TString outputfile, double range, bool drawLine=
     profile->Draw();
     c1->SaveAs("test.root");
     TFile *f = TFile::Open(inputfile,"R");
-
-    title = "LD wafer with global channel id (readout sequence)";
+    //    TString layer__ = layer_;
+    title = "LD Wafer:"+layer_+", Run:"+ runNumber;//"LD wafer with global channel id (readout sequence)";
     TH2Poly *p = new TH2Poly("hexagonal histograms", title, -1*range, range, -1*range-2, range-2);
     p->SetStats(0);
     p->GetXaxis()->SetTitle("x (cm)");
     p->GetYaxis()->SetTitle("y (cm)");
     p->GetYaxis()->SetTitleOffset(1.1);
-
-    title = "LD wafer with HGCROC pin/chan";
+    
+    title = "LD Wafer-"+layer_+" Run-"+ runNumber;//"LD wafer with HGCROC pin/chan";
     TH2Poly *p_pin = new TH2Poly("p_pin", title, -1*range, range, -1*range-2, range-2);
     p_pin->SetStats(0);
     p_pin->GetXaxis()->SetTitle("x (cm)");
     p_pin->GetYaxis()->SetTitle("y (cm)");
     p_pin->GetYaxis()->SetTitleOffset(1.1);
 
-    title = "LD wafer with Si cell pad Id";
+    title = "LD Wafer-"+layer_+" Run-"+ runNumber;//"LD wafer with Si cell pad Id";
     TH2Poly *p_sicell = new TH2Poly("p_sicell", title, -1*range, range, -1*range-2, range-2);
     p_sicell->SetStats(0);
     p_sicell->GetXaxis()->SetTitle("x (cm)");
@@ -122,34 +189,69 @@ void th2poly(TString inputfile, TString outputfile, double range, bool drawLine=
 
     TRandom r;
     p->ChangePartition(100, 100);
-
+    std::cout<<"counter "<<counter<<std::endl;
     for(int i=0; i<counter; ++i) {
         double value = profile->GetBinContent(i+1);
+	if(i==146 || i==147)
+	  cout<< "value "<<value<<"\t"<<map_globalID[i]<<endl;
         p->SetBinContent(i+1, value);
 
-        if(i==0 || i==78 || i==156)
-            p_pin->SetBinContent(i+1, 0.000001);
-        else
-            p_pin->SetBinContent(i+1, map_HGCROC_pin[i]);
+        // if(i==0 || i==78 || i==156)
+        //     p_pin->SetBinContent(i+1, 0.000001);
+        // else
+	  p_pin->SetBinContent(i+1,value);// map_HGCROC_pin[i]);
 
-        p_sicell->SetBinContent(i+1, map_SiCell_padId[i]);
+        p_sicell->SetBinContent(i+1, value);//map_SiCell_padId[i]);
     }
-
+    int xmax=200;
+    if(ped_method==0)
+      {p->GetZaxis()->SetTitle("<ADC> counts");
+	p_pin->GetZaxis()->SetTitle("<ADC> counts");
+	p_sicell->GetZaxis()->SetTitle("<ADC> counts");
+      }
+    else if (ped_method==1)
+      {p->GetZaxis()->SetTitle("#mu(ADC) -gauss");
+        p_pin->GetZaxis()->SetTitle("#mu(ADC) -gauss");
+        p_sicell->GetZaxis()->SetTitle("#mu (ADC) -gauss");
+      }
+    else if(ped_method==2)
+      {
+	p->GetZaxis()->SetTitle("#sigma(ADC) (gauss)");
+        p_pin->GetZaxis()->SetTitle("#sigma(ADC) (gauss)");
+        p_sicell->GetZaxis()->SetTitle("#sigma(ADC) (gauss)");
+      xmax =5;
+      }
+    
     p->SetMarkerSize(0.7);
+    p->SetMaximum(xmax);
+    p->GetZaxis()->SetTitleOffset(1.2);
+    p_pin->GetZaxis()->SetTitleOffset(1.2);
+    p_sicell->GetZaxis()->SetTitleOffset(1.2);
+
     p->Draw("colz;text");
     beautify_plot();
-    c1->SaveAs(outputfile);
-    c1->SaveAs("info_LD_wafer_globalChannelId_readoutSequence.png");
+    //    c1->SaveAs(outputfile);
+    TString  eosdir = "/eos/user/k/kalpana/www/folder/HGCAL_TDAQ/Plots/Aug2023_TBHGCAL_CERN/PedestalStudies/Hexplots/";
+    c1->SaveAs(eosdir+png_String+"_globalChannelId_readoutSequence.png");
+    c1->SaveAs(eosdir+png_String+"_globalChannelId_readoutSequence.pdf");
+    c1->SaveAs(png_String+"_globalChannelId_readoutSequence.png");
+    c1->SaveAs(png_String+"_globalChannelId_readoutSequence.pdf");
 
     p_pin->SetMarkerSize(0.7);
+    p_pin->SetMaximum(xmax);
+
     p_pin->Draw("colz;text");
     beautify_plot();
-    c1->SaveAs("info_LD_wafer_HGCROC_pin_chan.png");
 
+    c1->SaveAs(png_String+"_HGCROC_pin_chan.png");
+    c1->SaveAs(png_String+"_HGCROC_pin_chan.pdf");
+    
+    p_sicell->SetMaximum(xmax);
     p_sicell->SetMarkerSize(0.7);
     p_sicell->Draw("colz;text");
     beautify_plot();
-    c1->SaveAs("info_LD_wafer_SiCell_padId.png");
+    c1->SaveAs(png_String+"_SiCell_padId.png");
+    c1->SaveAs(png_String+"_SiCell_padId.pdf");
 
     //-----------------------------------------------------------------
     // Reminder: counter = nCells - 9

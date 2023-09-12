@@ -21,6 +21,9 @@ $ make && ./exe.py
 - Load the geometry root file in DQM EDAnalyzer
 - Fill entries & produce plots
 
+## How to run
+./exe.py
+
 ## Reference
 - https://root.cern/manual/python/
 - https://root.cern/doc/master/th2polyEurope_8C.html
