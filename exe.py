@@ -254,91 +254,277 @@ def exe(command):
 #execute python script for coordinate queries
 exe("./toolbox/coordinate_loader.py")
 
-# execute root macro for TH2Poly
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\", \"Module_0_run_1691518350_pedestal\", \"Module_0_run_1691518350_pedestal.pdf\", 26, \"false\",\"0\",\"1691518350\",0)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\", \"Module_1_run_1691518350_pedestal\", \"Module_0_run_1691518350_pedestal.pdf\", 26, \"false\",\"1\",\"1691518350\",0)'")
+## chi2 
 
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\", \"Module_0_run_1691518350_pedestal_GaussMean\", \"Module_0_run_1691518350_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691518350\",1)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\", \"Module_1_run_1691518350_pedestal_GaussMean\", \"Module_0_run_1691518350_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691518350\",1)'")
+                                 
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_0_run_1691487584_chi2\", \"Module_0_run_1691487584_chi2.pdf\", 26, \"false\",\"0\",\"1691487584\",6)'")
 
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\", \"Module_0_run_1691518350_Noise_GaussSigma\", \"Module_0_run_1691518350_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691518350\",2)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\", \"Module_1_run_1691518350_pedestal_GaussMean\", \"Module_0_run_1691518350_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691518350\",2)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_1_run_1691487584_chi2\", \"Module_1_run_1691487584_chi2.pdf\", 26, \"false\",\"1\",\"1691487584\",6)'")
 
-
-## run2                           
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\", \"Module_0_run_1691487584_pedestal\", \"Module_0_run_1691487584_pedestal.pdf\", 26, \"false\",\"0\",\"1691487584\",0)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\", \"Module_1_run_1691487584_pedestal\", \"Module_0_run_1691487584_pedestal.pdf\", 26, \"false\",\"1\",\"1691487584\",0)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\", \"Module_0_run_1691487584_pedestal_GaussMean\", \"Module_0_run_1691487584_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691487584\",1)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\", \"Module_1_run_1691487584_pedestal_GaussMean\", \"Module_0_run_1691487584_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691487584\",1)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\", \"Module_0_run_1691487584_Noise_GaussSigma\", \"Module_0_run_1691487584_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691487584\",2)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\", \"Module_1_run_1691487584_pedestal_GaussMean\", \"Module_0_run_1691487584_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691487584\",2)'")
-
-## run3                       
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\", \"Module_0_run_1691489947_pedestal\", \"Module_0_run_1691489947_pedestal.pdf\", 26, \"false\",\"0\",\"1691489947\",0)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\", \"Module_1_run_1691489947_pedestal\", \"Module_0_run_1691489947_pedestal.pdf\", 26, \"false\",\"1\",\"1691489947\",0)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\", \"Module_0_run_1691489947_pedestal_GaussMean\", \"Module_0_run_1691489947_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691489947\",1)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\", \"Module_1_run_1691489947_pedestal_GaussMean\", \"Module_0_run_1691489947_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691489947\",1)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\", \"Module_0_run_1691489947_Noise_GaussSigma\", \"Module_0_run_1691489947_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691489947\",2)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\", \"Module_1_run_1691489947_pedestal_GaussMean\", \"Module_0_run_1691489947_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691489947\",2)'")
-
-#run4
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\", \"Module_0_run_1691491176_pedestal\", \"Module_0_run_1691491176_pedestal.pdf\", 26, \"false\",\"0\",\"1691491176\",0)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\", \"Module_1_run_1691491176_pedestal\", \"Module_0_run_1691491176_pedestal.pdf\", 26, \"false\",\"1\",\"1691491176\",0)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\", \"Module_0_run_1691491176_pedestal_GaussMean\", \"Module_0_run_1691491176_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691491176\",1)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\", \"Module_1_run_1691491176_pedestal_GaussMean\", \"Module_0_run_1691491176_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691491176\",1)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\", \"Module_0_run_1691491176_Noise_GaussSigma\", \"Module_0_run_1691491176_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691491176\",2)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\", \"Module_1_run_1691491176_pedestal_GaussMean\", \"Module_0_run_1691491176_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691491176\",2)'")
-
-##run5
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\", \"Module_0_run_1691497635_pedestal\", \"Module_0_run_1691497635_pedestal.pdf\", 26, \"false\",\"0\",\"1691497635\",0)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\", \"Module_1_run_1691497635_pedestal\", \"Module_0_run_1691497635_pedestal.pdf\", 26, \"false\",\"1\",\"1691497635\",0)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\", \"Module_0_run_1691497635_pedestal_GaussMean\", \"Module_0_run_1691497635_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691497635\",1)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\", \"Module_1_run_1691497635_pedestal_GaussMean\", \"Module_0_run_1691497635_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691497635\",1)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\", \"Module_0_run_1691497635_Noise_GaussSigma\", \"Module_0_run_1691497635_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691497635\",2)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\", \"Module_1_run_1691497635_pedestal_GaussMean\", \"Module_0_run_1691497635_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691497635\",2)'")
-
-## run6
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\", \"Module_0_run_1691500205_pedestal\", \"Module_0_run_1691500205_pedestal.pdf\", 26, \"false\",\"0\",\"1691500205\",0)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\", \"Module_1_run_1691500205_pedestal\", \"Module_0_run_1691500205_pedestal.pdf\", 26, \"false\",\"1\",\"1691500205\",0)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\", \"Module_0_run_1691500205_pedestal_GaussMean\", \"Module_0_run_1691500205_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691500205\",1)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\", \"Module_1_run_1691500205_pedestal_GaussMean\", \"Module_0_run_1691500205_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691500205\",1)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\", \"Module_0_run_1691500205_Noise_GaussSigma\", \"Module_0_run_1691500205_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691500205\",2)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\", \"Module_1_run_1691500205_pedestal_GaussMean\", \"Module_0_run_1691500205_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691500205\",2)'")
-
-## run7
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"Module_0_run_1691503538_pedestal\", \"Module_0_run_1691503538_pedestal.pdf\", 26, \"false\",\"0\",\"1691503538\",0)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"Module_1_run_1691503538_pedestal\", \"Module_0_run_1691503538_pedestal.pdf\", 26, \"false\",\"1\",\"1691503538\",0)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"Module_0_run_1691503538_pedestal_GaussMean\", \"Module_0_run_1691503538_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691503538\",1)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"Module_1_run_1691503538_pedestal_GaussMean\", \"Module_0_run_1691503538_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691503538\",1)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"Module_0_run_1691503538_Noise_GaussSigma\", \"Module_0_run_1691503538_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691503538\",2)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"Module_1_run_1691503538_pedestal_GaussMean\", \"Module_0_run_1691503538_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691503538\",2)'")
-
-##run8
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\", \"Module_0_run_1691505681_pedestal\", \"Module_0_run_1691505681_pedestal.pdf\", 26, \"false\",\"0\",\"1691505681\",0)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\", \"Module_1_run_1691505681_pedestal\", \"Module_0_run_1691505681_pedestal.pdf\", 26, \"false\",\"1\",\"1691505681\",0)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\", \"Module_0_run_1691505681_pedestal_GaussMean\", \"Module_0_run_1691505681_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691505681\",1)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\", \"Module_1_run_1691505681_pedestal_GaussMean\", \"Module_0_run_1691505681_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691505681\",1)'")
-
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\", \"Module_0_run_1691505681_Noise_GaussSigma\", \"Module_0_run_1691505681_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691505681\",2)'")
-exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\", \"Module_1_run_1691505681_pedestal_GaussMean\", \"Module_0_run_1691505681_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691505681\",2)'")
+                                                 
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_0_run_1691518350_chi2\", \"Module_0_run_1691518350_chi2.pdf\", 26, \"false\",\"0\",\"1691518350\",6)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\",  \"Module_1_run_1691518350_chi2\", \"Module_0_run_1691518350_chi2.pdf\", 26, \"false\",\"1\",\"1691518350\",6)'")
+# x
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_0_run_1691489947_chi2\", \"Module_0_run_1691489947_chi2.pdf\", 26, \"false\",\"0\",\"1691489947\",6)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\",  \"Module_1_run_1691489947_chi2\", \"Module_0_run_1691489947_chi2.pdf\", 26, \"false\",\"1\",\"1691489947\",6)'")
 
 
-## run9
-## no run beyond this :) ##
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_0_run_1691491176_chi2\", \"Module_0_run_1691491176_chi2.pdf\", 26, \"false\",\"0\",\"1691491176\",6)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\",  \"Module_1_run_1691491176_chi2\", \"Module_0_run_1691491176_chi2.pdf\", 26, \"false\",\"1\",\"1691491176\",6)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\", \"Module_0_run_1691497635_chi2\", \"Module_0_run_1691497635_chi2.pdf\", 26, \"false\",\"0\",\"1691497635\",6)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\",  \"Module_1_run_1691497635_chi2\", \"Module_0_run_1691497635_chi2.pdf\", 26, \"false\",\"1\",\"1691497635\",6)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_0_run_1691503538_chi2\", \"Module_0_run_1691503538_chi2.pdf\", 26, \"false\",\"0\",\"1691503538\",6)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\",  \"Module_1_run_1691503538_chi2\", \"Module_0_run_1691503538_chi2.pdf\", 26, \"false\",\"1\",\"1691503538\",6)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_0_run_1691505681_chi2\", \"Module_0_run_1691505681_chi2.pdf\", 26, \"false\",\"0\",\"1691505681\",6)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\",  \"Module_1_run_1691505681_chi2\", \"Module_0_run_1691505681_chi2.pdf\", 26, \"false\",\"1\",\"1691505681\",6)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_0_run_1691500205_chi2\", \"Module_0_run_1691500205_chi2.pdf\", 26, \"false\",\"0\",\"1691500205\",6)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\",  \"Module_1_run_1691500205_chi2\", \"Module_0_run_1691500205_chi2.pdf\", 26, \"false\",\"1\",\"1691500205\",6)'")
+
+
+### noise/area
+
+
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_0_run_1691487584_noiserPerarea\", \"Module_0_run_1691487584_noiserPerarea.pdf\", 26, \"false\",\"0\",\"1691487584\",7)'")
+
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_1_run_1691487584_noiserPerarea\", \"Module_1_run_1691487584_noiserPerarea.pdf\", 26, \"false\",\"1\",\"1691487584\",7)'")
+
+
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_0_run_1691518350_noiserPerarea\", \"Module_0_run_1691518350_noiserPerarea.pdf\", 26, \"false\",\"0\",\"1691518350\",7)'")
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\",  \"Module_1_run_1691518350_noiserPerarea\", \"Module_0_run_1691518350_noiserPerarea.pdf\", 26, \"false\",\"1\",\"1691518350\",7)'")
+
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_0_run_1691489947_noiserPerarea\", \"Module_0_run_1691489947_noiserPerarea.pdf\", 26, \"false\",\"0\",\"1691489947\",7)'")
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\",  \"Module_1_run_1691489947_noiserPerarea\", \"Module_0_run_1691489947_noiserPerarea.pdf\", 26, \"false\",\"1\",\"1691489947\",7)'")
+
+
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_0_run_1691491176_noiserPerarea\", \"Module_0_run_1691491176_noiserPerarea.pdf\", 26, \"false\",\"0\",\"1691491176\",7)'")
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\",  \"Module_1_run_1691491176_noiserPerarea\", \"Module_0_run_1691491176_noiserPerarea.pdf\", 26, \"false\",\"1\",\"1691491176\",7)'")
+
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\", \"Module_0_run_1691497635_noiserPerarea\", \"Module_0_run_1691497635_noiserPerarea.pdf\", 26, \"false\",\"0\",\"1691497635\",7)'")
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\",  \"Module_1_run_1691497635_noiserPerarea\", \"Module_0_run_1691497635_noiserPerarea.pdf\", 26, \"false\",\"1\",\"1691497635\",7)'")
+
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_0_run_1691503538_noiserPerarea\", \"Module_0_run_1691503538_noiserPerarea.pdf\", 26, \"false\",\"0\",\"1691503538\",7)'")
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\",  \"Module_1_run_1691503538_noiserPerarea\", \"Module_0_run_1691503538_noiserPerarea.pdf\", 26, \"false\",\"1\",\"1691503538\",7)'")
+
+
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_0_run_1691505681_noiserPerarea\", \"Module_0_run_1691505681_noiserPerarea.pdf\", 26, \"false\",\"0\",\"1691505681\",7)'")
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\",  \"Module_1_run_1691505681_noiserPerarea\", \"Module_0_run_1691505681_noiserPerarea.pdf\", 26, \"false\",\"1\",\"1691505681\",7)'")
+
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_0_run_1691500205_noiserPerarea\", \"Module_0_run_1691500205_noiserPerarea.pdf\", 26, \"false\",\"0\",\"1691500205\",7)'")
+exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\",  \"Module_1_run_1691500205_noiserPerarea\", \"Module_0_run_1691500205_noiserPerarea.pdf\", 26, \"false\",\"1\",\"1691500205\",7)'")
+
+
+
+
+# #Calib_Files_Aug2023/level0_calib_params_run1691489947.txt
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_0_run_1691487584_pedestal_DQMValid\", \"Module_0_run_1691487584_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691487584\",3)'")
+                                     
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_1_run_1691487584_pedestal_DQMValid\", \"Module_1_run_1691487584_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691487584\",3)'")
+                                                                                                       
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_0_run_1691487584_pedestal_GaussMean_DQMValid\", \"Module_0_run_1691487584_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691487584\",4)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_1_run_1691487584_pedestal_GaussMean_DQMValid\", \"Module_1_run_1691487584_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691487584\",4)'")
+
+                                                                                                       
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_0_run_1691487584_Noise_GaussSigma_DQMValid\", \"Module_0_run_1691487584_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"0\",\"1691487584\",5)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_1_run_1691487584_Noise_GaussSigma_DQMValid\", \"Module_1_run_1691487584_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"1\",\"1691487584\",5)'")
+
+
+
+# # # execute root macro for TH2Poly
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_0_run_1691518350_pedestal\", \"Module_0_run_1691518350_pedestal.pdf\", 26, \"false\",\"0\",\"1691518350\",0)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\",  \"Module_1_run_1691518350_pedestal\", \"Module_0_run_1691518350_pedestal.pdf\", 26, \"false\",\"1\",\"1691518350\",0)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_0_run_1691518350_pedestal_GaussMean\", \"Module_0_run_1691518350_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691518350\",1)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_1_run_1691518350_pedestal_GaussMean\", \"Module_0_run_1691518350_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691518350\",1)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\",  \"Module_0_run_1691518350_Noise_GaussSigma\", \"Module_0_run_1691518350_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691518350\",2)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\",  \"Module_1_run_1691518350_Noise_GaussSigma\", \"Module_0_run_1691518350_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691518350\",2)'")
+                                                                                          
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_0_run_1691518350_pedestal_DQMValid\", \"Module_0_run_1691518350_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691518350\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_1_run_1691518350_pedestal_DQMValid\", \"Module_1_run_1691518350_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691518350\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_0_run_1691518350_pedestal_GaussMean_DQMValid\", \"Module_0_run_1691518350_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691518350\",4)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_1_run_1691518350_pedestal_GaussMean_DQMValid\", \"Module_1_run_1691518350_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691518350\",4)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_0_run_1691518350_Noise_GaussSigma_DQMValid\", \"Module_0_run_1691518350_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"0\",\"1691518350\",5)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691518350_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691518350.txt\", \"Module_1_run_1691518350_Noise_GaussSigma_DQMValid\", \"Module_1_run_1691518350_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"1\",\"1691518350\",5)'")
+
+# # ## run2                           
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_0_run_1691487584_pedestal\", \"Module_0_run_1691487584_pedestal.pdf\", 26, \"false\",\"0\",\"1691487584\",0)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_1_run_1691487584_pedestal\", \"Module_0_run_1691487584_pedestal.pdf\", 26, \"false\",\"1\",\"1691487584\",0)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\",\"Module_0_run_1691487584_pedestal_GaussMean\", \"Module_0_run_1691487584_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691487584\",1)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_1_run_1691487584_pedestal_GaussMean\", \"Module_0_run_1691487584_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691487584\",1)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\", \"Module_0_run_1691487584_Noise_GaussSigma\", \"Module_0_run_1691487584_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691487584\",2)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691487584_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691487584.txt\",\"Module_1_run_1691487584_Noise_GaussSigma\", \"Module_0_run_1691487584_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691487584\",2)'")
+
+# ## run3                       
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_0_run_1691489947_pedestal\", \"Module_0_run_1691489947_pedestal.pdf\", 26, \"false\",\"0\",\"1691489947\",0)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_1_run_1691489947_pedestal\", \"Module_0_run_1691489947_pedestal.pdf\", 26, \"false\",\"1\",\"1691489947\",0)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_0_run_1691489947_pedestal_GaussMean\", \"Module_0_run_1691489947_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691489947\",1)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_1_run_1691489947_pedestal_GaussMean\", \"Module_0_run_1691489947_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691489947\",1)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_0_run_1691489947_Noise_GaussSigma\", \"Module_0_run_1691489947_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691489947\",2)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_1_run_1691489947_Noise_GaussSigma\", \"Module_0_run_1691489947_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691489947\",2)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_0_run_1691489947_pedestal_DQMValid\", \"Module_0_run_1691489947_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691489947\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_1_run_1691489947_pedestal_DQMValid\", \"Module_1_run_1691489947_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691489947\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_0_run_1691489947_pedestal_GaussMean_DQMValid\", \"Module_0_run_1691489947_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691489947\",4)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_1_run_1691489947_pedestal_GaussMean_DQMValid\", \"Module_1_run_1691489947_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691489947\",4)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_0_run_1691489947_Noise_GaussSigma_DQMValid\", \"Module_0_run_1691489947_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"0\",\"1691489947\",5)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691489947_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691489947.txt\", \"Module_1_run_1691489947_Noise_GaussSigma_DQMValid\", \"Module_1_run_1691489947_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"1\",\"1691489947\",5)'")
+
+
+
+
+# # #run4
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_0_run_1691491176_pedestal\", \"Module_0_run_1691491176_pedestal.pdf\", 26, \"false\",\"0\",\"1691491176\",0)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\",\"Module_1_run_1691491176_pedestal\", \"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_0_run_1691491176_pedestal.pdf\", 26, \"false\",\"1\",\"1691491176\",0)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_0_run_1691491176_pedestal_GaussMean\", \"Module_0_run_1691491176_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691491176\",1)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",  \"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_1_run_1691491176_pedestal_GaussMean\", \"Module_0_run_1691491176_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691491176\",1)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",  \"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_0_run_1691491176_Noise_GaussSigma\", \"Module_0_run_1691491176_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691491176\",2)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",  \"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_1_run_1691491176_Noise_GaussSigma\", \"Module_0_run_1691491176_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691491176\",2)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_0_run_1691491176_pedestal_DQMValid\", \"Module_0_run_1691491176_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691491176\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_1_run_1691491176_pedestal_DQMValid\", \"Module_1_run_1691491176_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691491176\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_0_run_1691491176_pedestal_GaussMean_DQMValid\", \"Module_0_run_1691491176_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691491176\",4)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_1_run_1691491176_pedestal_GaussMean_DQMValid\", \"Module_1_run_1691491176_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691491176\",4)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_0_run_1691491176_Noise_GaussSigma_DQMValid\", \"Module_0_run_1691491176_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"0\",\"1691491176\",5)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691491176_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691491176.txt\", \"Module_1_run_1691491176_Noise_GaussSigma_DQMValid\", \"Module_1_run_1691491176_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"1\",\"1691491176\",5)'")
+
+
+# # ##run5
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\",  \"Module_0_run_1691497635_pedestal\", \"Module_0_run_1691497635_pedestal.pdf\", 26, \"false\",\"0\",\"1691497635\",0)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\", \"Module_1_run_1691497635_pedestal\", \"Module_0_run_1691497635_pedestal.pdf\", 26, \"false\",\"1\",\"1691497635\",0)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\", \"Module_0_run_1691497635_pedestal_GaussMean\", \"Module_0_run_1691497635_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691497635\",1)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\",  \"Module_1_run_1691497635_pedestal_GaussMean\", \"Module_0_run_1691497635_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691497635\",1)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\",  \"Module_0_run_1691497635_Noise_GaussSigma\", \"Module_0_run_1691497635_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691497635\",2)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\",  \"Module_1_run_1691497635_Noise_GaussSigma\", \"Module_0_run_1691497635_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691497635\",2)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\", \"Module_0_run_1691497635_pedestal_DQMValid\", \"Module_0_run_1691497635_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691497635\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\", \"Module_1_run_1691497635_pedestal_DQMValid\", \"Module_1_run_1691497635_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691497635\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\", \"Module_0_run_1691497635_pedestal_GaussMean_DQMValid\", \"Module_0_run_1691497635_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691497635\",4)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\", \"Module_1_run_1691497635_pedestal_GaussMean_DQMValid\", \"Module_1_run_1691497635_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691497635\",4)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\", \"Module_0_run_1691497635_Noise_GaussSigma_DQMValid\", \"Module_0_run_1691497635_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"0\",\"1691497635\",5)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691497635_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691497635.txt\", \"Module_1_run_1691497635_Noise_GaussSigma_DQMValid\", \"Module_1_run_1691497635_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"1\",\"1691497635\",5)'")
+
+
+# # ## run6
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\",  \"Module_0_run_1691500205_pedestal\", \"Module_0_run_1691500205_pedestal.pdf\", 26, \"false\",\"0\",\"1691500205\",0)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_1_run_1691500205_pedestal\", \"Module_0_run_1691500205_pedestal.pdf\", 26, \"false\",\"1\",\"1691500205\",0)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_0_run_1691500205_pedestal_GaussMean\", \"Module_0_run_1691500205_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691500205\",1)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_1_run_1691500205_pedestal_GaussMean\", \"Module_0_run_1691500205_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691500205\",1)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_0_run_1691500205_Noise_GaussSigma\", \"Module_0_run_1691500205_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691500205\",2)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_1_run_1691500205_Noise_GaussSigma\", \"Module_0_run_1691500205_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691500205\",2)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_0_run_1691500205_pedestal_DQMValid\", \"Module_0_run_1691500205_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691500205\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_1_run_1691500205_pedestal_DQMValid\", \"Module_1_run_1691500205_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691500205\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_0_run_1691500205_pedestal_GaussMean_DQMValid\", \"Module_0_run_1691500205_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691500205\",4)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_1_run_1691500205_pedestal_GaussMean_DQMValid\", \"Module_1_run_1691500205_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691500205\",4)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_0_run_1691500205_Noise_GaussSigma_DQMValid\", \"Module_0_run_1691500205_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"0\",\"1691500205\",5)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691500205_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691500205.txt\", \"Module_1_run_1691500205_Noise_GaussSigma_DQMValid\", \"Module_1_run_1691500205_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"1\",\"1691500205\",5)'")
+
+
+
+
+# # ## run7
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_0_run_1691503538_pedestal\", \"Module_0_run_1691503538_pedestal.pdf\", 26, \"false\",\"0\",\"1691503538\",0)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_1_run_1691503538_pedestal\", \"Module_0_run_1691503538_pedestal.pdf\", 26, \"false\",\"1\",\"1691503538\",0)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_0_run_1691503538_pedestal_GaussMean\", \"Module_0_run_1691503538_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691503538\",1)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_1_run_1691503538_pedestal_GaussMean\", \"Module_0_run_1691503538_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691503538\",1)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_0_run_1691503538_Noise_GaussSigma\", \"Module_0_run_1691503538_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691503538\",2)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_1_run_1691503538_Noise_GaussSigma\", \"Module_0_run_1691503538_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691503538\",2)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_0_run_1691503538_pedestal_DQMValid\", \"Module_0_run_1691503538_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691503538\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_1_run_1691503538_pedestal_DQMValid\", \"Module_1_run_1691503538_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691503538\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_0_run_1691503538_pedestal_GaussMean_DQMValid\", \"Module_0_run_1691503538_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"1691503538\",4)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_1_run_1691503538_pedestal_GaussMean_DQMValid\", \"Module_1_run_1691503538_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"1691503538\",4)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_0_run_1691503538_Noise_GaussSigma_DQMValid\", \"Module_0_run_1691503538_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"0\",\"1691503538\",5)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691503538_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691503538.txt\", \"Module_1_run_1691503538_Noise_GaussSigma_DQMValid\", \"Module_1_run_1691503538_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"1\",\"1691503538\",5)'")
+
+
+
+# # ##run8
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_0_run_1691505681_pedestal\", \"Module_0_run_1691505681_pedestal.pdf\", 26, \"false\",\"0\",\"1691505681\",0)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",  \"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_1_run_1691505681_pedestal\", \"Module_0_run_1691505681_pedestal.pdf\", 26, \"false\",\"1\",\"1691505681\",0)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",  \"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_0_run_1691505681_pedestal_GaussMean\", \"Module_0_run_1691505681_pedestal_GaussMean.pdf\", 26, \"false\",\"0\",\"1691505681\",1)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\", \"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_1_run_1691505681_pedestal_GaussMean\", \"Module_0_run_1691505681_GaussMeanpedestal.pdf\", 26, \"false\",\"1\",\"1691505681\",1)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",  \"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_0_run_1691505681_Noise_GaussSigma\", \"Module_0_run_1691505681_Noise_GaussSigma.pdf\", 26, \"false\",\"0\",\"1691505681\",2)'")
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",  \"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_1_run_1691505681_Noise_GaussSigma\", \"Module_0_run_1691505681_Noise_GaussSigma.pdf\", 26, \"false\",\"1\",\"1691505681\",2)'")
+
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_0_run_1691505681_pedestal_DQMValid\", \"Module_0_run_1691505681_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"run_1691505681\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_1_run_1691505681_pedestal_DQMValid\", \"Module_1_run_1691505681_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"run_1691505681\",3)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_0_run_1691505681_pedestal_GaussMean_DQMValid\", \"Module_0_run_1691505681_pedestal_DQMValid.pdf\", 26, \"false\",\"0\",\"run_1691505681\",4)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_1_run_1691505681_pedestal_GaussMean_DQMValid\", \"Module_1_run_1691505681_pedestal_DQMValid.pdf\", 26, \"false\",\"1\",\"run_1691505681\",4)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_0_run_1691505681_Noise_GaussSigma_DQMValid\", \"Module_0_run_1691505681_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"0\",\"run_1691505681\",5)'")
+
+# exe("root -l -b -q th2poly.C'(\"./data/hexagons.root\", \"./run_1691505681_pedestal.txt\",\"./Calib_Files_Aug2023/level0_calib_params_run1691505681.txt\", \"Module_1_run_1691505681_Noise_GaussSigma_DQMValid\", \"Module_1_run_1691505681_Noise_GaussSigma_DQMValid.pdf\", 26, \"false\",\"1\",\"run_1691505681\",5)'")
+
+
+
+# ## run9
+# ## no run beyond this :) ##

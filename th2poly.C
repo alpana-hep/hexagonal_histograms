@@ -10,12 +10,93 @@ std::map<int, int> map_HGCROC_pin = {{0,0}, {1,1}, {2,2}, {3,3}, {4,4}, {5,5}, {
 // key=globalId, value=padId
 std::map<int, int> map_SiCell_padId = {{0,36}, {1,26}, {2,35}, {3,25}, {4,8}, {5,17}, {6,16}, {7,7}, {9,6}, {10,15}, {11,5}, {12,13}, {13,34}, {14,33}, {15,23}, {16,24}, {18,14}, {20,4}, {21,12}, {22,3}, {23,11}, {24,2}, {25,1}, {26,10}, {27,9}, {29,21}, {30,31}, {31,22}, {32,32}, {33,19}, {34,29}, {35,20}, {36,30}, {39,46}, {40,58}, {41,47}, {42,59}, {43,44}, {44,57}, {45,56}, {46,45}, {48,74}, {49,88}, {50,87}, {51,73}, {52,71}, {53,86}, {54,72}, {55,85}, {57,70}, {59,69}, {60,84}, {61,68}, {62,83}, {63,43}, {64,42}, {65,55}, {66,54}, {68,67}, {69,82}, {70,66}, {71,81}, {72,52}, {73,41}, {74,53}, {75,40}, {78,165}, {79,177}, {80,151}, {81,166}, {82,178}, {83,188}, {84,198}, {85,189}, {87,179}, {88,167}, {89,168}, {90,153}, {91,137}, {92,123}, {93,138}, {94,152}, {96,154}, {98,155}, {99,139}, {100,140}, {101,125}, {102,126}, {103,111}, {104,110}, {105,95}, {107,109}, {108,93}, {109,124}, {110,108}, {111,94}, {112,79}, {113,80}, {114,65}, {117,121}, {118,135}, {119,136}, {120,150}, {121,107}, {122,106}, {123,91}, {124,122}, {126,120}, {127,104}, {128,89}, {129,105}, {130,76}, {131,75}, {132,90}, {133,60}, {135,62}, {137,61}, {138,48}, {139,49}, {140,37}, {141,92}, {142,78}, {143,77}, {144,63}, {146,38}, {147,27}, {148,28}, {149,18}, {150,39}, {151,64}, {152,50}, {153,51}, {156,99}, {157,98}, {158,115}, {159,114}, {160,96}, {161,97}, {162,113}, {163,112}, {165,127}, {166,128}, {167,141}, {168,142}, {169,130}, {170,145}, {171,144}, {172,129}, {174,143}, {176,157}, {177,156}, {178,169}, {179,170}, {180,180}, {181,190}, {182,181}, {183,191}, {185,171}, {186,172}, {187,158}, {188,159}, {189,192}, {190,193}, {191,182}, {192,183}, {195,100}, {196,101}, {197,116}, {198,117}, {199,146}, {200,132}, {201,147}, {202,131}, {204,102}, {205,103}, {206,119}, {207,118}, {208,148}, {209,134}, {210,133}, {211,149}, {213,163}, {215,162}, {216,164}, {217,175}, {218,176}, {219,160}, {220,173}, {221,161}, {222,174}, {224,186}, {225,187}, {226,196}, {227,197}, {228,195}, {229,184}, {230,185}, {231,194}};
 
-void th2poly(TString inputfile,TString inputfile1, TString png_String, TString outputfile, double range, bool drawLine=false, TString layer_= "1", TString runNumber="-1", int ped_method=-1){
+void th2poly(TString inputfile,TString inputfile1, TString input_calib, TString png_String, TString outputfile, double range, bool drawLine=false, TString layer_="-1", TString runNumber="-1", int ped_method=-1)
+{
     TCanvas *c1 = new TCanvas("c1", "", 900, 900);
     c1->SetRightMargin(0.15);
     c1->SetLeftMargin(0.1);
-    gStyle->SetPaintTextFormat(".0f");
+    if(ped_method==0 || ped_method==1 || ped_method==6)
+      gStyle->SetPaintTextFormat(".0f");
+    else
+      gStyle->SetPaintTextFormat(".2f");
+    // ----------------- //
+    //reading the cell area and global channel ID //
+    std::ifstream area_file;
+    area_file.open("table_cell_area_in_LD_full_wafer_v1.txt",ios::in);
+    std::vector<int> area_globalID;
+    std::vector<int> area_cellArea;
+    if(!area_file.is_open()){
+      std::cout << " file not opened" << std::endl;
+    }
+    else
+      {
+	area_globalID.clear();
+	area_cellArea.clear();
+	while (!area_file.eof()) {
+	  int globalID;
+	  float cellarea;
+	  area_file>>globalID>>cellarea;
+	  if (area_file.eof()) break;
+	  area_globalID.push_back(globalID);
+	  area_cellArea.push_back(cellarea);	    
+      }
+	area_file.close();
+      }
+    std::cout<< "entries in the input text file "<<"\t"<<area_globalID.size()<<std::endl;
+    //  Reading input calib files  //
+    std::ifstream calib_file;
+    calib_file.open(input_calib,ios::in);
+    std::vector<int> calib_layer;
+    std::vector<int> calib_globalID;
+    std::vector<int> calib_RocChip;
+    std::vector<int> calib_HalfRocChip;
+    std::vector<int> calib_HalfRocChannel;
+    std::vector<float> calib_gaussMean;
+    std::vector<float> calib_gaussSigma;
+    std::vector<float> calib_HistMean;
+    int globalID_counter;
+    cout<< "extracting pedestal fro module - "<<atoi(layer_)<<"\t"<<layer_<<endl;
+    if(!calib_file.is_open()){
+      std::cout << " file not opened" << std::endl;
+    }
+    else
+      {
+	calib_layer.clear();
+	calib_globalID.clear();
+	calib_RocChip.clear();
+	calib_HalfRocChip.clear();
+	calib_HalfRocChannel.clear();
+	calib_gaussMean.clear();
+	calib_gaussSigma.clear();
+	calib_HistMean.clear();
+	while (!calib_file.eof()) {
+	  TString module_ ;
+	  int module,layer,global_ID,chip_,halfchip,halfch,channel_,channel_map,channeltype,en_chan,entry;
+	  float adc,adc_err,adc_sigma,err_sigma,chi2,grass, grass_err, mpv;
+	  calib_file>>module_>>adc>>adc_sigma>>adc_err>>err_sigma>>mpv>>grass_err; //global_ID>>chip_>>halfchip>>halfch>>entry>>adc>>adc_sigma>>adc_err>>err_sigma>>mpv;
+	  if (calib_file.eof()) break;
+	  //cout<<module_<<"\t"<<atoi(layer_)<<"\t"<<layer<<endl;
+	  if(module_.Contains("0x54")) layer = 0;
+	  else  layer =1;
+	  if(layer!=atoi(layer_)) continue;
+	  //	  cout<<module_<<"\t"<<atoi(layer_)<<"\t"<<layer<<endl;
 
+	  calib_layer.push_back(layer);
+	  calib_globalID.push_back(globalID_counter);
+	  // calib_RocChip.push_back(chip_);
+	  // calib_HalfRocChip.push_back(halfchip);
+	  // calib_HalfRocChannel.push_back(halfch);
+	  
+	  globalID_counter++;
+	  
+	  calib_gaussMean.push_back(adc);
+	  calib_gaussSigma.push_back(adc_sigma);
+	  //calib_HistMean.push_back(mpv);
+	}
+	calib_file.close();
+      }
+    std::cout<< "entries in the input text file "<<"\t"<<calib_gaussSigma.size()<<std::endl;
+    
     // --------------------///
     // Reading pedestal input text files //
     // -------------------- ///
@@ -29,6 +110,8 @@ void th2poly(TString inputfile,TString inputfile1, TString png_String, TString o
     std::vector<float> map_gaussMean;
     std::vector<float> map_gaussSigma;
     std::vector<float> map_HistMean;
+
+    std::vector<float> map_chi2;
     cout<< "extracting pedestal fro module - "<<atoi(layer_)<<"\t"<<layer_<<endl;
     if(!in_file.is_open())
       {
@@ -47,7 +130,7 @@ void th2poly(TString inputfile,TString inputfile1, TString png_String, TString o
 	 while (!in_file.eof()) {
 	   int layer,global_ID,chip_,halfchip,halfch,channel_,channel_map,channeltype,en_chan,entry;
 	   float adc,adc_err,adc_sigma,err_sigma,chi2,grass, grass_err, mpv;
-	   in_file>>layer>>global_ID>>chip_>>halfchip>>halfch>>entry>>adc>>adc_sigma>>adc_err>>err_sigma>>mpv;
+	   in_file>>layer>>global_ID>>chip_>>halfchip>>halfch>>entry>>adc>>adc_sigma>>adc_err>>err_sigma>>mpv>>chi2;
 	   if (in_file.eof()) break;
 	   if(layer!=atoi(layer_)) continue;
 	   map_layer.push_back(layer);
@@ -58,6 +141,7 @@ void th2poly(TString inputfile,TString inputfile1, TString png_String, TString o
 	   map_gaussMean.push_back(adc);
 	   map_gaussSigma.push_back(adc_sigma);
 	   map_HistMean.push_back(mpv);
+	   map_chi2.push_back(chi2);
 	 }
 	 in_file.close();
       }
@@ -72,28 +156,51 @@ void th2poly(TString inputfile,TString inputfile1, TString png_String, TString o
     switch(scheme) {
         default:
 	  for(int i=0; i<234; ++i) {
-	      double value = (float)map_HistMean[i];
+	      float value = (float)map_HistMean[i] ;
 	      if(ped_method==0)
 		value = (float)map_HistMean[i];
 	      else if(ped_method==1)
 		value =(float)map_gaussMean[i];
 	      else if(ped_method==2)
 		value =(float)map_gaussSigma[i];
+	      else if(ped_method==3)
+                value = 100*(map_HistMean[i]-calib_gaussMean[i])/calib_gaussMean[i];
+              else if(ped_method==4)
+                value = 100*(map_gaussMean[i]-calib_gaussMean[i])/calib_gaussMean[i];
+              else if(ped_method==5)
+                value = (map_gaussSigma[i]-calib_gaussSigma[i])/calib_gaussSigma[i];
+	      else if (ped_method==6)
+		value = map_chi2[i];
+	      else if(ped_method==7)
+		value = map_gaussSigma[i]*126.46/area_cellArea[i]; // noise*d/A
+	      //	      cout<< "value "<<value<<"\t"<<map_gaussSigma[i]<<"\t"<<area_cellArea[i]<<endl;
+	      if(value==0)
+		value = value+1e-6;
                 if(i==0) profile->Fill(i, value+1e-6);
-                else profile->Fill(i, value);
+                else profile->Fill(i, value);		
             }
             break;
 
         case 1: // scheme: expected injected channels
             title = "Manual specification";
             for(int i=0; i<234; ++i) {
-	      double value = (float)map_HistMean[i];
+	      float value = map_HistMean[i]/calib_gaussMean[i];
 	      if(ped_method==0)
-		value =(float)map_HistMean[i];
-	      else if(ped_method==1)
-		value =(float)map_gaussMean[i];
-	      else if(ped_method==2)
-		value =(float)map_gaussSigma[i];
+                value = (float)map_HistMean[i];
+              else if(ped_method==1)
+                value =(float)map_gaussMean[i];
+              else if(ped_method==2)
+                value =(float)map_gaussSigma[i];
+              else if(ped_method==3)
+                value = 100*(map_HistMean[i]-calib_gaussMean[i])/calib_gaussMean[i];
+              else if(ped_method==4)
+                value = 100*(map_gaussMean[i]-calib_gaussMean[i])/calib_gaussMean[i];
+              else if(ped_method==5)
+                value = (map_gaussSigma[i]-calib_gaussSigma[i])/calib_gaussSigma[i];
+              else if (ped_method==6)
+                value = map_chi2[i];
+              else if(ped_method==7)
+                value = map_gaussSigma[i]/(0.1*area_cellArea[i]);
 
                 if(i==0) profile->Fill(i, value+1e-6);
                 else if(i==20) profile->Fill(i, value);
@@ -114,7 +221,7 @@ void th2poly(TString inputfile,TString inputfile1, TString png_String, TString o
         case 2: // scheme: results displayed on DQM GUI
             title = "DQM GUI (with readout sequence)";
             for(int i=0; i<234; ++i) {
-	      double value = (float)map_HistMean[i];
+	      float value = (float)map_HistMean[i];
 	      if(ped_method==0)
 		value =(float)map_HistMean[i];
 	      else if(ped_method==1)
@@ -151,21 +258,21 @@ void th2poly(TString inputfile,TString inputfile1, TString png_String, TString o
     c1->SaveAs("test.root");
     TFile *f = TFile::Open(inputfile,"R");
     //    TString layer__ = layer_;
-    title = "LD Wafer:"+layer_+", Run:"+ runNumber;//"LD wafer with global channel id (readout sequence)";
+    title = "Module:"+layer_+", Run:"+ runNumber;//"LD wafer with global channel id (readout sequence)";
     TH2Poly *p = new TH2Poly("hexagonal histograms", title, -1*range, range, -1*range-2, range-2);
     p->SetStats(0);
     p->GetXaxis()->SetTitle("x (cm)");
     p->GetYaxis()->SetTitle("y (cm)");
     p->GetYaxis()->SetTitleOffset(1.1);
     
-    title = "LD Wafer-"+layer_+" Run-"+ runNumber;//"LD wafer with HGCROC pin/chan";
+    title = "Module:"+layer_+" Run-"+ runNumber;//"LD wafer with HGCROC pin/chan";
     TH2Poly *p_pin = new TH2Poly("p_pin", title, -1*range, range, -1*range-2, range-2);
     p_pin->SetStats(0);
     p_pin->GetXaxis()->SetTitle("x (cm)");
     p_pin->GetYaxis()->SetTitle("y (cm)");
     p_pin->GetYaxis()->SetTitleOffset(1.1);
 
-    title = "LD Wafer-"+layer_+" Run-"+ runNumber;//"LD wafer with Si cell pad Id";
+    title = "Module:"+layer_+" Run-"+ runNumber;//"LD wafer with Si cell pad Id";
     TH2Poly *p_sicell = new TH2Poly("p_sicell", title, -1*range, range, -1*range-2, range-2);
     p_sicell->SetStats(0);
     p_sicell->GetXaxis()->SetTitle("x (cm)");
@@ -191,9 +298,11 @@ void th2poly(TString inputfile,TString inputfile1, TString png_String, TString o
     p->ChangePartition(100, 100);
     std::cout<<"counter "<<counter<<std::endl;
     for(int i=0; i<counter; ++i) {
-        double value = profile->GetBinContent(i+1);
-	if(i==146 || i==147)
-	  cout<< "value "<<value<<"\t"<<map_globalID[i]<<endl;
+        float value = profile->GetBinContent(i+1);
+	if(value==0)
+	  value = value+1e-06;
+	//	if(i==146 || i==147)
+	cout<< "value "<<value<<"\t"<<map_gaussSigma[i]<<"\t"<<area_cellArea[i]<<"\t"<<i<<endl;
         p->SetBinContent(i+1, value);
 
         // if(i==0 || i==78 || i==156)
@@ -203,7 +312,7 @@ void th2poly(TString inputfile,TString inputfile1, TString png_String, TString o
 
         p_sicell->SetBinContent(i+1, value);//map_SiCell_padId[i]);
     }
-    int xmax=200;
+float xmax=200;
     if(ped_method==0)
       {p->GetZaxis()->SetTitle("<ADC> counts");
 	p_pin->GetZaxis()->SetTitle("<ADC> counts");
@@ -219,14 +328,53 @@ void th2poly(TString inputfile,TString inputfile1, TString png_String, TString o
 	p->GetZaxis()->SetTitle("#sigma(ADC) (gauss)");
         p_pin->GetZaxis()->SetTitle("#sigma(ADC) (gauss)");
         p_sicell->GetZaxis()->SetTitle("#sigma(ADC) (gauss)");
-      xmax =5;
+      xmax =5.0;
       }
-    
-    p->SetMarkerSize(0.7);
+
+    else if(ped_method==3)
+      {p->GetZaxis()->SetTitle("100*(<ADC> - <Calib ADC >)/<Calib ADC>");
+        p_pin->GetZaxis()->SetTitle("100*(<ADC> - <Calib ADC >)/<Calib ADC>");
+        p_sicell->GetZaxis()->SetTitle("100*(<ADC> - <Calib ADC >)/<Calib ADC>");
+	xmax=1.5;
+      }
+    else if (ped_method==4)
+      {p->GetZaxis()->SetTitle("100*(#mu- <Calib ADC >)/<Calib ADC>");
+	p_pin->GetZaxis()->SetTitle("100*(#mu- <Calib ADC >)/<Calib ADC>");
+        p_sicell->GetZaxis()->SetTitle("100*(#mu- <Calib ADC >)/<Calib ADC>");
+	xmax =1.5;
+      }
+    else if(ped_method==5)
+      {
+        p->GetZaxis()->SetTitle("(#sigma- <Calib sigma >)/<Calib sigma>");
+        p_pin->GetZaxis()->SetTitle("(#sigma- <Calib sigma >)/<Calib sigma>");
+        p_sicell->GetZaxis()->SetTitle("(#sigma- <Calib sigma >)/<Calib sigma>");
+	xmax =1.1;
+      }
+
+    else if(ped_method==6)
+      {
+        p->GetZaxis()->SetTitle("#chi^{2}/ndf");
+        p_pin->GetZaxis()->SetTitle("#chi^{2}/ndf");
+        p_sicell->GetZaxis()->SetTitle("#chi^{2}/ndf");
+	xmax =500;
+      }
+
+    else if(ped_method==7)
+      {
+        p->GetZaxis()->SetTitle("Noise (Normalized to full cell area)");
+        p_pin->GetZaxis()->SetTitle("Noise (Normalized to full cell area)");
+        p_sicell->GetZaxis()->SetTitle("Noise (Normalized to full cell area)");
+        xmax =5;
+      }
+
+    p->SetMarkerSize(0.8);
+    p_pin->SetMarkerSize(0.8);
+    p_sicell->SetMarkerSize(0.8);
+
     p->SetMaximum(xmax);
-    p->GetZaxis()->SetTitleOffset(1.2);
-    p_pin->GetZaxis()->SetTitleOffset(1.2);
-    p_sicell->GetZaxis()->SetTitleOffset(1.2);
+    p->GetZaxis()->SetTitleOffset(1.3);
+    p_pin->GetZaxis()->SetTitleOffset(1.3);
+    p_sicell->GetZaxis()->SetTitleOffset(1.3);
 
     p->Draw("colz;text");
     beautify_plot();
